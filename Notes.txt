@@ -1,0 +1,28 @@
+Items Changed in Tableau Prep Builder
+
+-Any rows that did not have a value for any of the corridors meant that
+it was out of scope, omitted rows (these had a null or "outside the CRA
+boundary" for the CRA column)
+
+-Omitted any columns not needed according to the project information on
+what columns we would be using (kept the ID and year columns)
+
+-Combined the 5 years of data, where the ID and year can help separate items
+
+-Omitted the one row that had a year value of "0"
+-Only kept non-null values for ID number
+-Did not keep the half-mile corridor columns as these were not needed
+
+NOTE: Not all items within the CRA boundary were in a corridor of interest.
+We needed to only include those that were in a corridor of interest.
+Made a calculated field called "within interest" where if all corridors 
+had a null value on that row, it would say no, otherwise it says yes.
+Then, omitted the rows that said no. There were very few rows that were
+actually in a corridor
+
+After Data cleaning, used the following formula in Excel:
+=IF(ISTEXT(F2),"16th St",IF(ISTEXT(G2),"18th St",IF(ISTEXT(H2),"22nd St",
+IF(ISTEXT(I2),"34th St",IF(ISTEXT(J2),"49th St",IF(ISTEXT(K2),"Central Ave",
+IF(ISTEXT(L2),"Dr MLK Jr",IF(ISTEXT(M2),"5th Ave","None"))))))))
+
+-Then copied and pasted values only to prevent issues
